@@ -1,0 +1,9 @@
+# Mengabaikan folder pycache
+__pycache__/
+
+# Mengabaikan file Python compiled bytecode
+*.py[cod]
+
+# Opsional: jika menggunakan virtual environment, tambahkan juga
+env/
+venv/

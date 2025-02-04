@@ -4,13 +4,14 @@ from ball import Ball
 from scoreboard import Scoreboard
 import time
 
-MAXIMUM_SCORE = 10
-
 screen = Screen()
 screen.setup(800,600)
 screen.bgcolor("black")
 screen.title("Pong")
 screen.tracer(0)
+
+MAXIMUM_SCORE = screen.numinput("Maximum Score", "what score to win?")
+
 
 r_paddle = Paddle((350,0))
 l_paddle = Paddle((-350,0))
@@ -49,7 +50,7 @@ while game_on:
         scoreboard.r_point()
         ball.reset()
 
-    if scoreboard.r_score == MAXIMUM_SCORE or scoreboard.l_score == MAXIMUM_SCORE:
+    if scoreboard.r_score >= MAXIMUM_SCORE or scoreboard.l_score >= MAXIMUM_SCORE:
         game_on = False
         scoreboard.game_over()
     

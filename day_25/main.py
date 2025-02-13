@@ -19,6 +19,15 @@ while game_on:
     else:
         answer_state = screen.textinput(f"{len(correct_answer)}/{len(states)} States Correct", "What's another state's name?").title()
 
+    if answer_state == "Exit":
+        missing_states = []
+        for state in states:
+            if state not in correct_answer:
+                missing_states.append(state)
+        new_data = pd.DataFrame(missing_states)
+        new_data.to_csv("states_need_to_learn.csv")
+        break
+    
     if answer_state not in correct_answer:
         if answer_state in states:
             correct_answer.append(answer_state)
@@ -28,11 +37,10 @@ while game_on:
             t.penup()
             t.goto(state.x.item(), state.y.item())
             t.write(answer_state,False,"center",("Arial",8,"normal"))
+
     if len(correct_answer) == len(states):
         game_on = False
         t = turtle.Turtle()
         t.hideturtle()
         t.penup()
         t.write("You've Completed It!!!",False,"center",("Arial",16,"bold"))
-
-screen.exitonclick()
